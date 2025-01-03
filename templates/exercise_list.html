@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}Exercises{% endblock title %}
+
+{% block content %}
+{% for exercise in exercise_list %}
+<div class="card">
+  <div class="card-header">
+    <span class="fw-bold">
+      <a href="{{ exercise.get_absolute_url }}">{{ exercise.exercise_name }}</a>
+    </span>
+  </div>
+  <div class="card-body">
+    muscle worked: {{ exercise.get_muscles_worked_display }}
+  </div>
+  <div class="card-footer text-muted">
+    <a href="{% url 'exercise_edit' exercise.pk %}">Edit</a>
+    <a href="{% url 'exercise_delete' exercise.pk %}">Delete</a>
+  </div>
+</div>
+<br />
+{% endfor %}
+<a href="{% url 'exercise_new' %}">Add New Exercise</a>
+{% endblock content %}
