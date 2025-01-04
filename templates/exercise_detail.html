@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
+{% if exercise.author.pk == request.user.pk %}
 <div class="exercise-entry">
   <h2>{{ object.exercise_name }}</h2>
   <p>muscles worked: {{ object.muscles_worked }}</p>
@@ -12,4 +13,5 @@
   </p>
   <p>Back to <a href="{% url 'exercise_list' %}">All Exercises</a>.</p>
 </div>
+{% endif %}
 {% endblock content %}
