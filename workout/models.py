@@ -4,15 +4,15 @@ from exercises.models import Exercise
 from django.urls import reverse
     
 class WorkoutSession(models.Model):
-    name = models.CharField(max_length=255)
-    date = models.DateField(auto_now_add=True)
+    workout_name = models.CharField(max_length=255)
+    workout_date = models.DateField(auto_now_add=True)
     author = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
     )
     
     def __str__(self):
-        return f"{self.name} {self.date}"
+        return f"{self.workout_name} {self.workout_date}"
     
     def get_absolute_url(self):
         return reverse("workout_session_detail", kwargs={'session_pk': self.pk})

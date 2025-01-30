@@ -6,6 +6,9 @@
 <h1>Your Workouts</h1>
 <p>A list of all your recorded workouts.</p>
 {% for workout_session in object_list %}
-<p><a href="{% url 'workout_session_detail' workout_session.pk %}"> {{ workout_session.name }}, {{ workout_session.date }}</a></p>
+<p><a href="{% url 'workout_session_detail' workout_session.id %}"> {{ workout_session.workout_name }}, {{ workout_session.workout_date }}</a></p>
+<p><a href="{% url 'workout_session_edit' workout_session.id %}">Edit</a> | 
+<a href="{% url 'workout_session_delete' workout_session.id %}">Delete</a></p>
 {% endfor %}
+<p><a href="{% url 'workout_session_new' %}">Add New Session</a></p>
 {% endblock content %}

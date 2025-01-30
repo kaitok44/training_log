@@ -5,7 +5,7 @@ class WorkoutSessionAdmin(admin.ModelAdmin):
     list_display = [
         "__str__",
         "author",
-        "date",
+        "workout_date",
     ]
 
 class WorkoutAdmin(admin.ModelAdmin):

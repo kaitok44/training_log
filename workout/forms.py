@@ -1,5 +1,5 @@
 from django import forms
-from .models import Set
+from .models import Set, Workout
 
 class CreateSetForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
@@ -14,4 +14,16 @@ class CreateSetForm(forms.ModelForm):
             "repetitions",
             "weight",
             "notes",
+        )
+
+class CreateWorkoutForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(CreateWorkoutForm, self).__init__(*args, **kwargs)
+        self.fields['workout_session'].disabled = True
+
+    class Meta:
+        model = Workout
+        fields = (
+            "workout_session",
+            "exercise",
         )
