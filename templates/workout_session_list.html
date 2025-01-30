@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block title %}Workouts{% endblock title %}
+
+{% block content %}
+<h1>Your Workouts</h1>
+<p>A list of all your recorded workouts.</p>
+{% for workout_session in object_list %}
+<p><a href="{% url 'workout_session_detail' workout_session.pk %}"> {{ workout_session.name }}, {{ workout_session.date }}</a></p>
+{% endfor %}
+{% endblock content %}

@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+<h1>{{ object.name }} | {{ object.date }}</h1>
+{% for workout in object.workout_set.all %}
+<h2>{{ workout.exercise }}</h2>
+  {% for workout_set in workout.set_set.all %}
+  <p>Set #: {{ workout_set.set_number }}</p>
+  <p>Weight: {{ workout_set.weight }} kg</p>
+  <p>Reps: {{ workout_set.repetitions }}</p>
+  <p>Notes: {{ workout_set.notes }}</p>
+  <!-- pass both workout.pk and set.pk to url -->
+  <p>Sets <a href="{% url 'workout_set_edit' workout.id workout_set.id %}">Edit</a> | 
+    <a href="{% url 'workout_set_delete' workout.id workout_set.id %}">Delete</a></p>
+  {% endfor %}
+  <p>Workout <a href="{% url 'workout_set_new' workout.id %}">Add Set</a> | 
+    <a href="#">Edit</a> | <a href="#">Delete</a></p>
+{% endfor %}
+{% endblock content %}

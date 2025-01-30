@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Delete</h1>
+<form action="" method="post">{% csrf_token %}
+  <p>Are you sure you want to delete "{{ set.exercise }}"?</p>
+  <button class="btn btn-danger ms-2" type="submit">Confirm</button>
+  <a href="{{ request.META.HTTP_REFERER }}"><button class="btn btn-secondary">Back</button></a>
+</form>
+{% endblock content %}

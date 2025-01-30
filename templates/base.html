@@ -23,6 +23,7 @@
           </li>
           {% if user.is_authenticated %}
           <li><a href="{% url 'exercise_list' %}" class="nav-link text-white px-2">Exercises</a></li>
+          <li><a href="{% url 'workout_session_list' %}" class="nav-link text-white px-2">Workouts</a></li>
         </ul>
         <div class="mr-auto">
           <ul class="navbar-nav">
