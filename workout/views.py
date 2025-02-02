@@ -5,7 +5,7 @@ from django.views.generic import(
 from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
 from .models import WorkoutSession, Workout, Set
-from .forms import CreateSetForm
+from .forms import CreateSetForm, CreateWorkoutForm
 
 class WorkoutSessionListView(ListView):
     model = WorkoutSession
@@ -53,7 +53,7 @@ class WorkoutSetUpdateView(UpdateView):
     #     return reverse('workout_session_detail', kwargs={'session_pk':self.kwargs.get('session_pk')})
 
 class WorkoutCreateView(CreateView):
-    model = Workout
+    form_class = CreateWorkoutForm
     template_name = "workout_new.html"
 
     def get_initial(self):
@@ -61,7 +61,22 @@ class WorkoutCreateView(CreateView):
         return {
             'workout_session': selected_workout_session,
         }
+
+class WorkoutUpdateView(UpdateView):
+    model = Workout
+    form_class = CreateWorkoutForm
+    template_name = "workout_edit.html"
+    pk_url_kwarg = "workout_pk"
+
+class WorkoutDeleteView(DeleteView):
+    model = Workout
+    template_name = "workout_delete.html"
+    pk_url_kwarg = "workout_pk"
     
+    def get_success_url(self):
+        pk_from_before = self.get_object().workout_session
+        return reverse_lazy("workout_session_detail", kwargs={'session_pk':pk_from_before.pk})
+
 class WorkoutSetDeleteView(DeleteView):
     model = Set
     template_name = "workout_set_delete.html"

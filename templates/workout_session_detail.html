@@ -3,8 +3,12 @@
 
 {% block content %}
 <h1>{{ object.workout_name }} | {{ object.workout_date }}</h1>
+<p><a href="{% url 'workout_new' object.id %}">Add new exercise</a></p>
 {% for workout in object.workout_set.all %}
 <h2>{{ workout.exercise }}</h2>
+  <p>Workout <a href="{% url 'workout_set_new' workout.id %}">Add Set</a> |   
+  <a href="{% url 'workout_edit' object.id workout.id %}">Edit</a> | 
+  <a href="{% url 'workout_delete' object.id workout.id %}">Delete</a></p>
   {% for workout_set in workout.set_set.all %}
   <p>Set #: {{ workout_set.set_number }}</p>
   <p>Weight: {{ workout_set.weight }} kg</p>
@@ -14,8 +18,5 @@
   <p>Sets <a href="{% url 'workout_set_edit' workout.id workout_set.id %}">Edit</a> | 
     <a href="{% url 'workout_set_delete' workout.id workout_set.id %}">Delete</a></p>
   {% endfor %}
-  <p>Workout <a href="{% url 'workout_set_new' workout.id %}">Add Set</a> | 
-    <a href="#">Edit</a> | <a href="#">Delete</a></p>
-    {% endfor %}
-  <p><a href="{% url 'workout_new' session_pk %}">Add new exercise</a></p>
+  {% endfor %}
 {% endblock content %}
