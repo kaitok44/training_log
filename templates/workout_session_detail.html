@@ -2,6 +2,7 @@
 
 
 {% block content %}
+{% if object.author.pk == request.user.pk %}
 <h1>{{ object.workout_name }} | {{ object.workout_date }}</h1>
 <p><a href="{% url 'workout_new' object.id %}">Add new exercise</a></p>
 {% for workout in object.workout_set.all %}
@@ -19,4 +20,5 @@
     <a href="{% url 'workout_set_delete' workout.id workout_set.id %}">Delete</a></p>
   {% endfor %}
   {% endfor %}
+  {% endif %}
 {% endblock content %}
