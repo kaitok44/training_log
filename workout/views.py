@@ -63,7 +63,11 @@ class WorkoutCreateView(LoginRequiredMixin, CreateView):
         return {
             'workout_session': selected_workout_session,
         }
-
+    def get_form_class(self):
+        model_form = super().get_form_class()
+        model_form.base_fields['exercise'].limit_choices_to = {'author': self.request.user}
+        return model_form
+    
 class WorkoutUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Workout
     form_class = CreateWorkoutForm
@@ -72,7 +76,7 @@ class WorkoutUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
     def test_func(self):
         obj = self.get_object()
-        return obj.author == self.request.user
+        return obj.workout_session.author == self.request.user
 
 class WorkoutDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Workout
@@ -85,7 +89,7 @@ class WorkoutDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
     def test_func(self):
         obj = self.get_object()
-        return obj.author == self.request.user
+        return obj.workout_session.author == self.request.user
 
 class WorkoutSetUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Set
@@ -100,7 +104,7 @@ class WorkoutSetUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
     def test_func(self):
         obj = self.get_object()
-        return obj.author == self.request.user
+        return obj.exercise.workout_session.author == self.request.user
 
 class WorkoutSetDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Set
@@ -113,7 +117,7 @@ class WorkoutSetDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
     def test_func(self):
         obj = self.get_object()
-        return obj.author == self.request.user
+        return obj.exercise.workout_session.author == self.request.user
 
 class WorkoutSetCreateView(LoginRequiredMixin, CreateView):
     form_class = CreateSetForm
