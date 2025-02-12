@@ -7,10 +7,14 @@
 <p>A list of all your recorded workouts.</p>
 {% for workout_session in object_list %}
 {% if workout_session.author.pk == request.user.pk %}
-<p><a href="{% url 'workout_session_detail' workout_session.id %}"> {{ workout_session.workout_name }}, {{ workout_session.workout_date }}</a></p>
-<p><a href="{% url 'workout_session_edit' workout_session.id %}">Edit</a> | 
-<a href="{% url 'workout_session_delete' workout_session.id %}">Delete</a></p>
+<div class="card">
+  <h5 class="card-header p-3"><a href="{% url 'workout_session_detail' workout_session.id %}" class="link-dark link-offset-2"> {{ workout_session.workout_name }}, {{ workout_session.workout_date }}</a></h5>
+    <div class="card-body">
+      <a href="{% url 'workout_session_edit' workout_session.id %}"><button class="btn btn-primary">Edit</button></a> 
+      <a href="{% url 'workout_session_delete' workout_session.id %}"><button class="btn btn-danger">Delete</button></a>
 {% endif %}
 {% endfor %}
-<p><a href="{% url 'workout_session_new' %}">Add New Session</a></p>
+  </div>
+</div>
+<a href="{% url 'workout_session_new' %}"><button class="btn btn-secondary mt-3">Add New Session</button></a>
 {% endblock content %}

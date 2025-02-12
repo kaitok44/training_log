@@ -8,19 +8,19 @@
 <div class="card">
   <div class="card-header">
     <span class="fw-bold">
-      <a href="{{ exercise.get_absolute_url }}">{{ exercise.exercise_name }}</a>
+      <h5><a href="{{ exercise.get_absolute_url }}" class="link-dark link-offset-2">{{ exercise.exercise_name }}</a></h5>
     </span>
   </div>
   <div class="card-body">
     muscle worked: {{ exercise.get_muscles_worked_display }}
   </div>
   <div class="card-footer text-muted">
-    <a href="{% url 'exercise_edit' exercise.pk %}">Edit</a>
-    <a href="{% url 'exercise_delete' exercise.pk %}">Delete</a>
+    <a href="{% url 'exercise_edit' exercise.pk %}"><button class="btn btn-primary">Edit</button></a>
+    <a href="{% url 'exercise_delete' exercise.pk %}"><button class="btn btn-danger">Delete</button></a>
   </div>
 </div>
 <br />
 {% endif %}
 {% endfor %}
-<a href="{% url 'exercise_new' %}">Add New Exercise</a>
+<a href="{% url 'exercise_new' %}"><button class="btn btn-secondary">Add New Exercise</button></a>
 {% endblock content %}
