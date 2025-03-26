@@ -22,7 +22,7 @@ class Workout(models.Model):
         WorkoutSession, on_delete=models.CASCADE,
     )
     exercise = models.ForeignKey(
-        Exercise, on_delete=models.CASCADE,
+        Exercise, on_delete=models.CASCADE, 
     )
 
     def get_absolute_url(self):
