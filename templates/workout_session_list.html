@@ -12,9 +12,9 @@
     <div class="card-body">
       <a href="{% url 'workout_session_edit' workout_session.id %}"><button class="btn btn-primary">Edit</button></a> 
       <a href="{% url 'workout_session_delete' workout_session.id %}"><button class="btn btn-danger">Delete</button></a>
-{% endif %}
-{% endfor %}
   </div>
 </div>
+{% endif %}
+{% endfor %}
 <a href="{% url 'workout_session_new' %}"><button class="btn btn-secondary mt-3">Add New Session</button></a>
 {% endblock content %}
