@@ -5,11 +5,11 @@ Training Log
 日々の筋肉トレーニングを記録できる簡単なアプリです。
 
 ## 使用技術
-Python 3.13.0　　
-Django 5.0.10　　
-PostgreSQL 14.17　　
-Bootstrap v5.3.3　　
-Git, Github　　
+Python 3.13.0<br/>
+Django 5.0.10<br/>
+PostgreSQL 14.17<br/>
+Bootstrap v5.3.3<br/>
+Git, Github<br/>
 
 ## テスト用アカウント
 Username: test  
