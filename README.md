@@ -7,7 +7,7 @@ Training Log
 ## 使用技術
 Python 3.13.0<br/>
 Django 5.0.10<br/>
-PostgreSQL 14.17<br/>
+PostgreSQL 14.17　（ローカル環境ではSQLiteを使用しています）<br/>
 Bootstrap v5.3.3<br/>
 Git, Github<br/>
 
