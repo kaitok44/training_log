@@ -13,6 +13,7 @@ from .forms import CreateSetForm, CreateWorkoutForm
 class WorkoutSessionListView(LoginRequiredMixin, ListView):
     model = WorkoutSession
     template_name = "workout_session_list.html"
+    ordering = ['-workout_date']
 
 class WorkoutSessionDetailView(LoginRequiredMixin, UserPassesTestMixin, DetailView):
     model = WorkoutSession
